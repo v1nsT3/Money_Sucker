@@ -8,11 +8,11 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Fence
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Cart
   - 
   - 
   - 

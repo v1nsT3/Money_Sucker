@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7355426041901844217}
   - component: {fileID: 9115157995547406535}
   - component: {fileID: 7460856961070336934}
-  m_Layer: 0
+  - component: {fileID: 5651279586624307018}
+  m_Layer: 3
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 3413405180055237365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3748, y: 0.224, z: -4.31}
-  m_LocalScale: {x: 0.22361022, y: 0.36996412, z: 0.2236102}
+  m_LocalScale: {x: 0.22361028, y: 0.36996412, z: 0.22361027}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -94,7 +95,7 @@ CapsuleCollider:
   m_GameObject: {fileID: 3413405180055237365}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
@@ -115,3 +116,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &5651279586624307018
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413405180055237365}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.3295908, y: 2.0000002, z: 1.0000001}
+  m_Center: {x: 0.6647945, y: -0.0000008055463, z: 0.000003798422}

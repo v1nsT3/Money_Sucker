@@ -1,42 +1,72 @@
 using UnityEngine;
 using DG.Tweening;
-using System.Collections;
+using UnityEngine.Events;
+using System.Collections.Generic;
 
 public class SuctionDevice : MonoBehaviour
 {
     [SerializeField] private float _durationSuction;
     [SerializeField] private Transform _container;
     [SerializeField] private float _maxDistance;
+    [SerializeField] private float _maxVacuumForce;
+
+    [SerializeField] private List<Money> _moneyInTrigger = new List<Money>();
+
+    public event UnityAction Sucked;
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Money money))
         {
-            Excite(other.attachedRigidbody);
+            if (_moneyInTrigger.Contains(money) == false)
+            {
+                _moneyInTrigger.Add(money);
+            }
+
+            Excite(money);
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.TryGetComponent(out Money money))
         {
-            float _currentDist = Vector3.Distance(_container.position, money.transform.position);
-
-            if (_currentDist <= _maxDistance / 2)
-                Sucking(other.attachedRigidbody);
+            if (_moneyInTrigger.Contains(money))
+            {
+                _moneyInTrigger.Remove(money);
+            }
         }
     }
 
-    private void Sucking(Rigidbody rigidbody)
+    private void Update()
     {
-        rigidbody.transform.SetParent(_container, true);
-        rigidbody.transform.DOLocalMove(Vector3.zero, _durationSuction);
-        rigidbody.transform.DOScale(0, _durationSuction);
-        rigidbody.isKinematic = true;
+        if (_moneyInTrigger.Count == 0)
+            return;
+
+        for (int i = 0; i < _moneyInTrigger.Count; i++)
+        {
+            Debug.Log("asdads");
+            float _currentDist = Vector3.Distance(_container.position, _moneyInTrigger[i].transform.position);
+
+            if (_currentDist <= _maxDistance / _maxVacuumForce)
+                Sucking(_moneyInTrigger[i]);
+        }
     }
 
-    private void Excite(Rigidbody rigidbody)
+    private void Sucking(Money money)
     {
-        rigidbody.AddForce((transform.position - rigidbody.transform.position) * 0.25f, ForceMode.Impulse);
+        money.transform.SetParent(_container, true);
+        money.transform.DOLocalMove(Vector3.zero, _durationSuction);
+        money.transform.DOScale(0, _durationSuction).OnComplete(() =>
+        {
+            money.gameObject.SetActive(false);
+        });
+        _moneyInTrigger.Remove(money);
+        Sucked?.Invoke();
+    }
+
+    private void Excite(Money money)
+    {
+        money.Rigidbody.AddForce((transform.position - money.transform.position) * 0.25f, ForceMode.Impulse);
     }
 }

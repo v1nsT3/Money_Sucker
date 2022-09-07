@@ -25,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_rigidbody.velocity), _speedRotate * Time.deltaTime);
         }
 
-        _animator.SetBool(_moveFloat, Mathf.Abs(_joystick.Vertical + _joystick.Horizontal) != 0);
+        _animator.SetBool(_moveFloat, (Mathf.Abs(_joystick.Vertical) + Mathf.Abs(_joystick.Horizontal)) != 0);
     }
 
     private void FixedUpdate()

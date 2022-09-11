@@ -45,7 +45,6 @@ public class SuctionDevice : MonoBehaviour
 
         for (int i = 0; i < _moneyInTrigger.Count; i++)
         {
-            Debug.Log("asdads");
             float _currentDist = Vector3.Distance(_container.position, _moneyInTrigger[i].transform.position);
 
             if (_currentDist <= _maxDistance / _maxVacuumForce)

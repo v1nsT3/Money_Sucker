@@ -100,14 +100,14 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OverrideLightmapDir: 0
+    - _OverrideLightmapDir: 1
     - _Parallax: 0.02
     - _QueueOffset: 0
     - _RimEnabled: 0
     - _SelfShadingSize: 0.551
     - _SelfShadingSizeExtra: 0
     - _ShadowEdgeSize: 0.133
-    - _ShadowEdgeSizeExtra: 0
+    - _ShadowEdgeSizeExtra: 0.045
     - _SmoothnessTextureChannel: 0
     - _SpecularEnabled: 1
     - _SpecularHighlights: 1
